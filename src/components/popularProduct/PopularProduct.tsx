@@ -2,23 +2,26 @@
 import { ProductType } from "@/types/productType";
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 export default function PopularProduct() {
   const [products, setProducts] = useState<ProductType[]>([]);
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const res = await fetch(
-        "https://api.escuelajs.co/api/v1/products?offset=0&limit=10"
-      );
-      const data = await res.json();
-      setProducts(data);
-      console.log(data);
-    };
+  const searchParam = useSearchParams();
+  const search = searchParam.get("search") || "";
 
-    fetchProducts();
-  }, products);
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const res = await fetch('https://dummyjson.com/products')
+      const data = await res.json()
+      const result = search ? data.products.filter((u: ProductType) => {
+        return u.title.toLowerCase().includes(search.toLowerCase());
+      }): data.products;
+      setProducts(result)
+    }
+    fetchProduct()
+  }, [search]);
 
   return (
     <section className="py-10">
