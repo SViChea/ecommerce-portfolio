@@ -6,13 +6,15 @@ export default function NavBarComponent() {
   return (
     <header>
         <div className='flex justify-between items-center py-6'>
-            <Image 
-            src={"/images/Walmart_logo.png"}
-            alt="Logo"
-            width={180}
-            height={50}
-            unoptimized
-            />
+            <Link href="/" className='flex gap-1 items-center'>
+                <Image
+                    src={"/images/Walmart_logo.png"}
+                    alt="Logo"
+                    width={180}
+                    height={50}
+                    unoptimized
+                />
+            </Link>
 
             <nav className='flex gap-8'>
                 <Link href="/cart" className='flex gap-1 items-center'>
@@ -45,12 +47,12 @@ export default function NavBarComponent() {
             
             <nav>
                 <ul className='flex gap-10'>
-                    <li>Deals</li>
-                    <li>Home</li>
-                    <li>About</li>
-                    <li>Shop</li>
-                    <li>Blog</li>
-                    <li>Contact</li>
+                    <li><Link href="/deals">Deals</Link></li>
+                    <li><Link href="/">Home</Link></li>
+                    <li><Link href="/about">About</Link></li>
+                    <li><Link href="/shop">Shop</Link></li>
+                    <li><Link href="/blog">Blog</Link></li>
+                    <li><Link href="/contact">Contact</Link></li>
                 </ul>
             </nav>
         </div>

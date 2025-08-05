@@ -34,7 +34,7 @@ export default function RootLayout({
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" />
       </head>
       <body
-        className={`${quicksand.variable} ${quicksand.variable} antialiased px-[120px]`}
+        className={`${quicksand.className} ${quicksand.className} antialiased px-[120px]`}
       >
         <NavBarComponent />
         {children}
