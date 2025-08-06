@@ -2,7 +2,7 @@ import { CategoryType } from "@/types/categoryType";
 import Image from "next/image";
 
 async function fetchCategories(): Promise<CategoryType[]> {
-  const res = await fetch("https://api.escuelajs.co/api/v1/categories?limit=10");
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}categories?limit=10`);
   const data = await res.json();
   return data;
 }
