@@ -33,7 +33,7 @@ export default function BlogComponent() {
           {blogs.map((blog: BlogType) => (
             <div key={blog.id} className="relative">
               <Link
-                href="#_"
+                href={`/blog/${blog.id}`}
                 className="block overflow-hidden group rounded-xl shadow-lg"
               >
                 <Image
@@ -46,7 +46,7 @@ export default function BlogComponent() {
                 />
               </Link>
               <div className="relative mt-5">
-                <Link href="#_" className="block mb-3 hover:underline">
+                <Link href={`/blog/${blog.id}`} className="block mb-3 hover:underline">
                   <h2 className="text-2xl font-bold leading-8 text-black  transition-colors duration-200 hover:text-purple-700 ">
                     {blog.title}
                   </h2>
@@ -55,7 +55,7 @@ export default function BlogComponent() {
                   {blog.body}
                 </p>
                 <Link
-                  href="#_"
+                  href={`/blog/${blog.id}`}
                   className="font-medium underline text-purple-600 "
                 >
                   Read More
