@@ -1,17 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Quicksand } from "next/font/google";
 import "./globals.css";
-import NavBarComponent from "@/components/navbar/NavBarComponent";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import NavBarWrapper from "@/components/navbar/NavBarWrapper";
 
 const quicksand = Quicksand({
   variable: "--font-quicksand",
@@ -34,9 +24,9 @@ export default function RootLayout({
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" />
       </head>
       <body
-        className={`${quicksand.className} ${quicksand.className} antialiased px-[120px]`}
+        className={`${quicksand.className} ${quicksand.className} antialiased`}
       >
-        <NavBarComponent />
+        <NavBarWrapper />
         {children}
       </body>
     </html>

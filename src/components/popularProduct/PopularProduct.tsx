@@ -26,7 +26,7 @@ export default function PopularProduct() {
   }, [search]);
 
   return (
-    <section className="py-10">
+    <section className="py-10 px-[120px]">
       <h3 className="font-bold text-[32px]">Popular Products</h3>
       <div className="grid grid-cols-1 gap-4 py-5 md:grid-cols-3 lg:grid-cols-5">
         {products.map((product: ProductType) => (

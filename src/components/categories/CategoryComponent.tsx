@@ -7,11 +7,11 @@ async function fetchCategories(): Promise<CategoryType[]> {
   return data;
 }
 
-export default async function CategoryComponent() {
-  const categories = await fetchCategories();
+const categories = await fetchCategories();
 
+export default async function CategoryComponent() {
   return (
-    <section className="py-10">
+    <section className="py-10 px-[120px]">
       <h3 className="font-bold text-[32px]">Featured Categories</h3>
       <div className="grid grid-cols-4 gap-4 py-5 md:grid-cols-8 lg:grid-cols-10">
         {categories.map((category: CategoryType) => (

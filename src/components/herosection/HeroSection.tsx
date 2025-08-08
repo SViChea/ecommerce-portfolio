@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function HeroSection() {
   return (
-    <main className='bg-[url(/images/herobackground.jpg)] bg-cover w-full h-[500px] rounded-2xl mt-5 p-20'>
+    <main className='bg-[url(/images/herobackground.jpg)] bg-cover w-fill h-[500px] rounded-2xl mt-5 p-20 mx-[120px]'>
         <div className='flex flex-col gap-2'>
           <p className='font-bold text-[72px] w-[700px] text-white leading-[1]'>Fresh Vegetables Big discount</p>
           <p className='font-medium text-[30px] text-white pt-5'>Save up to 50% off on your first order</p>

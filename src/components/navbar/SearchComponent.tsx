@@ -16,7 +16,7 @@ export default function SearchComponent() {
 
   const pathname = usePathname();
   return (
-    <div className="flex justify-between items-center py-2]">
+    <div className="flex justify-between items-center py-0 px-[120px]">
       <form
         action=""
         className="flex items-center gap-2 border border-gray-300 px-5 py-1 rounded-lg"
@@ -38,7 +38,7 @@ export default function SearchComponent() {
         <i className="fa-solid fa-magnifying-glass"></i>
       </form>
 
-      <nav className="flex gap-10">
+      <nav className="flex gap-7">
         {
         MenuItems.filter((menu) => {
           return menu.active == true ? menu : ""

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import { BlogType } from "@/types/blogType";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,10 +14,10 @@ export default function BlogComponent() {
       setBlogs(data.posts);
     };
     fetchBlogs();
-  }, blogs);
+  }, []);
 
   return (
-    <section className="bg-white">
+    <section className="bg-white px-[120px]">
       <div className="text-center py-10">
         <h1 className="text-4xl font-bold text-black mb-4">
           Discover New Adventures
