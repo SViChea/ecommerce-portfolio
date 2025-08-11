@@ -2,15 +2,19 @@ import { ProductCartType } from "@/types/cartType";
 import { ColumnDef } from "@tanstack/react-table";
 import DeleteAlart from "./DeleteAlart";
 import OpenEditDialog from "./OpenEditDialog";
+import Image from "next/image";
 
 export const columnsCart: ColumnDef<ProductCartType>[] = [
   {
     accessorKey: "thumbnail",
     header: "Image",
     cell: ({ getValue }) => (
-      <img
+      <Image
         src={getValue<string>()}
         alt="Product Thumbnail"
+        width={200}
+        height={200}
+        unoptimized
         className="w-12 h-12 object-cover rounded"
       />
     ),

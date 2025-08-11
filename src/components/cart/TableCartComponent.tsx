@@ -1,10 +1,9 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Table,
   TableBody,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
@@ -15,22 +14,34 @@ import {
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import { ProductCartType } from "@/types/cartType";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
-  data: TData[];
 }
 
-export default function TableCartComponent<TData, TValue>({
+export default function TableCartComponent<TValue>({
   columns,
-  data,
-}: DataTableProps<TData, TValue>) {
+}: DataTableProps<ProductCartType, TValue>) {
+  const [carts, setCarts] = useState<ProductCartType[]>([]);
+
+  useEffect(() => {
+    const fetchCart = async () => {
+      const res = await fetch("https://dummyjson.com/carts/1")
+      const data = await res.json()
+      setCarts(data.products);
+    }
+    fetchCart()
+  }, [])
+
   const table = useReactTable({
     columns,
-    data,
+    data: carts,
     getCoreRowModel: getCoreRowModel(),
   });
 
+  
+  
   return (
     <div className="overflow-hidden rounded-md border mx-[120px] mt-5">
       <Table>

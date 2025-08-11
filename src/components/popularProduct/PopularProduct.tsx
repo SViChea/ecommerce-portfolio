@@ -1,4 +1,5 @@
 "use client";
+import { useGetAllProductsQuery } from "@/redux/services/products/productsApi";
 import { ProductType } from "@/types/productType";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,24 +7,26 @@ import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 export default function PopularProduct() {
-  const [products, setProducts] = useState<ProductType[]>([]);
-
   const searchParam = useSearchParams();
   const search = searchParam.get("search") || "";
+  const [products, setProducts] = useState<ProductType[]>([]);
+  const { data: product, isLoading } = useGetAllProductsQuery();
+
+  const prod = product as ProductType[];
 
   useEffect(() => {
-    const fetchProduct = async () => {
-      const res = await fetch('https://dummyjson.com/products')
-      const data = await res.json()
+    const result = search
+      ? prod.filter((u: ProductType) => {
+          return u.title.toLowerCase().includes(search.toLowerCase());
+        })
+      : prod;
 
-      const result = search ? data.products.filter((u: ProductType) => {
-        return u.title.toLowerCase().includes(search.toLowerCase());
-      }): data.products;
-      setProducts(result)
-      
-    }
-    fetchProduct()
+    setProducts(result);
   }, [search]);
+
+  if (isLoading) {
+    return <div>loading...</div>;
+  }
 
   return (
     <section className="py-10 px-[120px]">
@@ -34,7 +37,7 @@ export default function PopularProduct() {
             key={product.id}
             className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm"
           >
-            <Link href="#">
+            <Link href={`/shop/${product.id}`}>
               <Image
                 width={500}
                 height={500}
@@ -45,7 +48,7 @@ export default function PopularProduct() {
               />
             </Link>
             <div className="px-5 py-5">
-              <Link href="#">
+              <Link href={`/shop/${product.id}`}>
                 <h5 className="text-xl font-semibold tracking-tight text-gray-900">
                   {product.title}
                 </h5>

@@ -8,7 +8,6 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { SquarePen } from "lucide-react";
-import { Button } from "../ui/button";
 
 export default function OpenEditDialog() {
   return (

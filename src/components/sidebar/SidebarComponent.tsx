@@ -18,8 +18,8 @@ export function AppSidebar() {
         <p>Application</p>
         <SidebarMenu>
             {
-                items.map((menu) => (
-                    <Link href={""} className="flex gap-3 items-center mb-2">
+                items.map((menu, index) => (
+                    <Link key={index} href={""} className="flex gap-3 items-center mb-2">
                         <menu.icon size={20}/>
                         <span>{menu.title}</span>
                     </Link>

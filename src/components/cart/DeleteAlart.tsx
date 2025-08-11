@@ -10,9 +10,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { SquarePen, Trash } from "lucide-react";
-import { Button } from "../ui/button";
-import OpenEditDialog from "./OpenEditDialog";
+import { Trash } from "lucide-react";
 
 export default function DeleteAlart() {
   return (

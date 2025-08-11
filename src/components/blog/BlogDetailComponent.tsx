@@ -17,7 +17,7 @@ export default function BlogDetailComponent() {
     };
 
     fetchBlogDetail();
-  }, [blog]);
+  }, [id]);
 
   return (
     <div className="max-w-screen-xl mx-auto p-5 sm:p-8 md:p-12 relative">
