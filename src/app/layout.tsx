@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Quicksand } from "next/font/google";
 import "./globals.css";
 import NavBarWrapper from "@/components/navbar/NavBarWrapper";
+import { StoreProviders } from "@/redux/StoreProviders";
 
 const quicksand = Quicksand({
   variable: "--font-quicksand",
@@ -21,15 +22,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" />
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+        />
       </head>
       <body
         className={`${quicksand.className} ${quicksand.className} antialiased`}
       >
-        <NavBarWrapper />
-        {children}
+        <StoreProviders>
+          <NavBarWrapper />
+          {children}
+        </StoreProviders>
       </body>
     </html>
   );
 }
-  
