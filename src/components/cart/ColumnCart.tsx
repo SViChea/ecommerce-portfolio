@@ -1,6 +1,7 @@
 import { ProductCartType } from "@/types/cartType";
 import { ColumnDef } from "@tanstack/react-table";
 import DeleteAlart from "./DeleteAlart";
+import OpenEditDialog from "./OpenEditDialog";
 
 export const columnsCart: ColumnDef<ProductCartType>[] = [
   {
@@ -42,7 +43,10 @@ export const columnsCart: ColumnDef<ProductCartType>[] = [
     accessorKey: "action",
     header: "Action",
     cell: () => (
-      <DeleteAlart />
+      <div className="flex gap-2 items-center">
+        <OpenEditDialog />
+        <DeleteAlart />
+      </div>
     ),
   },
 ];

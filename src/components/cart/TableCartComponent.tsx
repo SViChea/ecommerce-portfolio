@@ -74,9 +74,6 @@ export default function TableCartComponent<TData, TValue>({
             </TableRow>
           )}
         </TableBody>
-        <TableFooter>
-          
-        </TableFooter>
       </Table>
     </div>
   );

@@ -10,12 +10,16 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Trash } from "lucide-react";
+import { SquarePen, Trash } from "lucide-react";
+import { Button } from "../ui/button";
+import OpenEditDialog from "./OpenEditDialog";
 
 export default function DeleteAlart() {
   return (
     <AlertDialog>
-      <AlertDialogTrigger><Trash className="text-red-400"/></AlertDialogTrigger>
+      <AlertDialogTrigger>
+          <Trash className="text-red-400" size={20} />
+      </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
