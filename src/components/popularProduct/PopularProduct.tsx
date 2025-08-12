@@ -5,14 +5,24 @@ import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { Button } from "../ui/button";
+import { useDispatch } from "react-redux";
+import { addToCart } from "@/redux/features/cart/cartSlice";
 
 export default function PopularProduct() {
   const searchParam = useSearchParams();
   const search = searchParam.get("search") || "";
   const [products, setProducts] = useState<ProductType[]>([]);
   const { data: product, isLoading } = useGetAllProductsQuery();
+  const dispatch = useDispatch();
 
-  const prod = product as ProductType[];
+  const handleAddToCart = (e: React.MouseEvent, product: ProductType) => {
+    e.preventDefault();
+    dispatch(addToCart(product));
+  };
+
+  const prod = (product as ProductType[]) || [];
+  console.log(prod);
 
   useEffect(() => {
     const result = search
@@ -21,18 +31,18 @@ export default function PopularProduct() {
         })
       : prod;
 
-    setProducts(result);
-  }, [search]);
+    setProducts(result || prod);
+  }, [product, searchParam]);
 
   if (isLoading) {
-    return <div>loading...</div>;
+    return <div>loading</div>;
   }
 
   return (
     <section className="py-10 px-[120px]">
       <h3 className="font-bold text-[32px]">Popular Products</h3>
       <div className="grid grid-cols-1 gap-4 py-5 md:grid-cols-3 lg:grid-cols-5">
-        {products.map((product: ProductType) => (
+        {products.map((product) => (
           <div
             key={product.id}
             className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm"
@@ -109,12 +119,12 @@ export default function PopularProduct() {
                 <span className="text-3xl font-bold text-gray-900">
                   ${product.price}
                 </span>
-                <button className="button">
+                <Button onClick={(e) => handleAddToCart(e, product)}>
                   <span className="label">+ Add to cart</span>
                   <span className="gradient-container">
                     <span className="gradient"></span>
                   </span>
-                </button>
+                </Button>
               </div>
             </div>
           </div>

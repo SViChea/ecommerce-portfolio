@@ -3,6 +3,8 @@ import { Quicksand } from "next/font/google";
 import "./globals.css";
 import NavBarWrapper from "@/components/navbar/NavBarWrapper";
 import { StoreProviders } from "@/redux/StoreProviders";
+import { ErrorBoundary } from "next/dist/client/components/error-boundary";
+import Error from "./error";
 
 const quicksand = Quicksand({
   variable: "--font-quicksand",
@@ -31,8 +33,10 @@ export default function RootLayout({
         className={`${quicksand.className} ${quicksand.className} antialiased`}
       >
         <StoreProviders>
-          <NavBarWrapper />
-          {children}
+          <ErrorBoundary errorComponent={Error}>
+            <NavBarWrapper />
+            {children}
+          </ErrorBoundary>
         </StoreProviders>
       </body>
     </html>

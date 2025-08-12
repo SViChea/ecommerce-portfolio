@@ -2,13 +2,16 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import { persistStore, persistReducer } from "redux-persist";
 import { productsApi } from "./services/products/productsApi";
+import cartReducer from "./features/cart/cartSlice"
 
 const persistConfig = {
   key: "root",
   storage,
+  whitelist: ["cart"]
 };
 
 const rootReducer = combineReducers({
+  cart: cartReducer,
   [productsApi.reducerPath]: productsApi.reducer,
 });
 
