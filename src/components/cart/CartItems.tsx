@@ -66,11 +66,11 @@ export default function CartItems() {
                   <td className="px-2 py-2">${cart.price}</td>
                   <td className="p-1 mt-9 bg-white rounded-[170px] border border-[#a0a0a0] justify-around items-center flex">
                     <Button onClick={(e) => handleMinusQuantity(e, cart)} className="text-black bg-transparent shadow-none hover:bg-transparent"><Minus /></Button>
-                    <Input
+                    <input
                             type="number"
                             value={cart.quantity}
                             onChange={(e) => handleInputQuantity(cart, Number.parseInt(e.target.value))}
-                            className="w-16 text-center"
+                            className="w-10 text-center outline-none"
                             min="1"
                         />
                     <Button onClick={(e) => handleAddQuantity(e, cart)} className="text-black bg-transparent shadow-none hover:bg-transparent"><Plus /></Button>

@@ -1,9 +1,19 @@
-import React from 'react'
+'use client'
+import { columnsCart } from '@/components/dashboard/ColumnProduct'
+import TableCartComponent from '@/components/dashboard/TableCartComponent'
+import { useGetAllProductsQuery } from '@/redux/services/products/productsApi';
+import { ProductType } from '@/types/productType';
+import React, { useState } from 'react'
 
 export default function page() {
+    const { data: product, isLoading } = useGetAllProductsQuery();
+  
+    if(isLoading){
+      return <div>loading...</div>
+    }
+    const items = (product as ProductType[]) || [];
+    console.log(items)
   return (
-    <div>
-      Admin
-    </div>
+    <TableCartComponent columns={columnsCart} data={items}/>
   )
 }
