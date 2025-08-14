@@ -49,7 +49,7 @@ export default function TableCartComponent<TValue, TData>({
       <div className="rounded-md border mx-10 mt-5 p-5">
         <div className="flex justify-between">
           <h4 className="text-12 font-bold">Product</h4>
-          <OpenEditDialog name="Add Product" component={<AddProductForm/>}/>
+          <OpenEditDialog name="Add Product" component={<AddProductForm type="edit"/>}/>
         </div>
         <Table className="m-3 self-center mx-auto">
           <TableHeader>

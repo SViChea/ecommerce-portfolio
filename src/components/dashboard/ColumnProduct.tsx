@@ -4,6 +4,8 @@ import Image from "next/image";
 import { ProductType } from "@/types/productType";
 import { Button } from "../ui/button";
 import { ArrowUpDown } from "lucide-react";
+import AddProductForm from "./form/AddProductForm";
+import OpenEditDialog from "./OpenEditDialog";
 
 export const columnsCart: ColumnDef<ProductType>[] = [
   
@@ -86,6 +88,7 @@ export const columnsCart: ColumnDef<ProductType>[] = [
     cell: ({row}) => (
       <div className="flex gap-2 items-center">
         <DeleteAlart productId={row.original.id}/>
+        <OpenEditDialog name="Edit" component={<AddProductForm product={row.original} type="update"/>}/>
       </div>
     ),
   },

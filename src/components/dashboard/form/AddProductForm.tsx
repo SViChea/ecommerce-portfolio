@@ -21,11 +21,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useCreateProductMutation } from "@/redux/services/products/productsApi";
+import { useCreateProductMutation, useGetProductsByIdQuery, useUpdateProductMutation } from "@/redux/services/products/productsApi";
 import SuccessDialog from "../SuccessDialog";
 import { useGetCategoriesQuery } from "@/redux/services/categorys/categoriesApi";
 import { CategoryType } from "@/types/categoryType";
 import { parse } from "path";
+import { ProductType } from "@/types/productType";
 
 const formSchema = z.object({
   title: z.string(),
@@ -42,7 +43,7 @@ const formSchema = z.object({
     ),
 });
 
-export default function AddProductForm() {
+export default function AddProductForm({product, type}: {product?: ProductType, type: string}) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
@@ -51,14 +52,15 @@ export default function AddProductForm() {
   const category = (categories as CategoryType[]) || [];
 
   const [createProduct] = useCreateProductMutation();
-
+  const [updateProduct] = useUpdateProductMutation();
   const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    price: 0,
+    title: product?.title || "",
+    description: product?.description || "",
+    price: product?.price || 0,
     images: null as File | null,
-    categoryId: 0,
+    categoryId: product?.category.id || 0,
   });
+
 
   const uploadImage = async (file: File): Promise<string> => {
     const formData = new FormData();
@@ -88,9 +90,21 @@ export default function AddProductForm() {
         images: [imageUrl],
       };
 
-      console.log(payload);
+      const updatePayload = {
+        title: formData.title,
+        price: formData.price,
+        images: [imageUrl],
+        description: formData.description,
+      }
 
+      console.log(updatePayload);
+
+      if(type == "edit"){
       await createProduct(payload);
+      }else{
+        console.log(product?.id)
+        await updateProduct({id: product?.id || 0, data: updatePayload})
+      }
 
       setFormData({
         title: "",
@@ -138,6 +152,8 @@ export default function AddProductForm() {
                     field.onChange(value); // update form state
                     setFormData({ ...formData, categoryId: parseInt(value) }); // update your custom state
                   }}
+
+                  defaultValue={product?.category.id.toString()}
                 >
                   <SelectTrigger className="w-full">
                     <SelectValue placeholder="Select a Category" />
@@ -170,6 +186,7 @@ export default function AddProductForm() {
                   onChange={(e) =>
                     setFormData({ ...formData, description: e.target.value })
                   }
+                  className="border-1 rounded-sm px-3 py-1"
                 />
               </FormControl>
             </FormItem>

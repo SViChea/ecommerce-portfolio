@@ -7,7 +7,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import AddProductForm from "./form/AddProductForm";
 
 export default function OpenEditDialog({name, component} : {name:string, component: React.JSX.Element}) {
   return (

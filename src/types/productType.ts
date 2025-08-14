@@ -17,6 +17,13 @@ export type CreateProductType = {
     categoryId: number;
 }
 
+export type UpdateProductType = {
+    title: string;
+    price: number;
+    images: string[];
+    description: string;
+}
+
 export type ProductDetailType = {
     id : number;
     title: string;
