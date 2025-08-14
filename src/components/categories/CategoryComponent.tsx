@@ -1,15 +1,13 @@
+'use client'
+import { useGetCategoriesQuery } from "@/redux/services/categorys/categoriesApi";
 import { CategoryType } from "@/types/categoryType";
 import Image from "next/image";
 
-async function fetchCategories(): Promise<CategoryType[]> {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}categories?limit=10`);
-  const data = await res.json();
-  return data;
-}
+export default function CategoryComponent() {
+  const {data: category, isLoading} = useGetCategoriesQuery();
 
-const categories = await fetchCategories();
+  const categories = category as CategoryType[] || []
 
-export default async function CategoryComponent() {
   return (
     <section className="py-10 px-[120px]">
       <h3 className="font-bold text-[32px]">Featured Categories</h3>

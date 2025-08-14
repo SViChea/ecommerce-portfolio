@@ -1,8 +1,20 @@
+import { CategoryType } from "./categoryType";
+
 export type ProductType = {
     id : number;
     title: string;
     images: string;
     price: number;
+    description: string;
+    category: CategoryType;
+}
+
+export type CreateProductType = {
+    title: string;
+    images: string[];
+    price: number;
+    description: string;
+    categoryId: number;
 }
 
 export type ProductDetailType = {

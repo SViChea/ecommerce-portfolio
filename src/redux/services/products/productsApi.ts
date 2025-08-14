@@ -1,4 +1,4 @@
-import { ProductDetailType, ProductType } from "@/types/productType";
+import { CreateProductType,ProductType } from "@/types/productType";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const productsApi = createApi({
@@ -12,11 +12,28 @@ export const productsApi = createApi({
       providesTags: ["Product"],
     }),
 
-    getProductsById: builder.query<ProductDetailType, number>({
+    getProductsById: builder.query<ProductType, number>({
       query: (id) => `/products/${id}`,
       providesTags: (result, error, id) => [{type: "Product", id}]
     }),
+
+    createProduct: builder.mutation<ProductType, Partial<CreateProductType>>({
+      query: (product) => ({
+                url: "products",
+                method: "POST",
+                body: product,
+            }),
+            invalidatesTags: ["Product"],
+    }),
+
+    deleteProduct: builder.mutation<{ success: boolean }, number>({
+      query: (id) => ({
+                url: `/products/${id}`,
+                method: "DELETE",
+            }),
+            invalidatesTags: ["Product"],
+    })
   }),
 });
 
-export const { useGetAllProductsQuery, useGetProductsByIdQuery } = productsApi;
+export const { useGetAllProductsQuery, useGetProductsByIdQuery, useCreateProductMutation, useDeleteProductMutation } = productsApi;

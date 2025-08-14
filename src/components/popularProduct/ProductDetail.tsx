@@ -1,6 +1,6 @@
 'use client'
 import Image from "next/image";
-import { ProductDetailType } from "@/types/productType";
+import { ProductType } from "@/types/productType";
 import { useParams } from "next/navigation";
 import { useGetProductsByIdQuery } from "@/redux/services/products/productsApi";
 
@@ -14,7 +14,7 @@ export default function ProductDetail() {
     return <div>Loading...</div>
   }
 
-  const product = products as ProductDetailType ;
+  const product = products as ProductType ;
 
   return (
     <div>

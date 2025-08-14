@@ -4,10 +4,9 @@ import { useAppSelector } from "@/redux/hook";
 import Image from "next/image";
 import React from "react";
 import { useDispatch } from "react-redux";
-import DeleteAlart from "./DeleteAlart";
 import { Button } from "../ui/button";
 import { Minus, Plus } from "lucide-react";
-import { Input } from "../ui/input";
+import DeleteAlart from "./DeleteAlart";
 
 export default function CartItems() {
   const { items, total} = useAppSelector((state) => state.cart);
@@ -87,14 +86,14 @@ export default function CartItems() {
             <tfoot>
               <tr className="border-t border-gray-400">
                 <td className="px-2 py-2" colSpan={3}>
-                  <button className="px-8 cursor-pointer py-3.5 bg-[#f2f2f2] rounded-[43px] text-[#4c4c4c] text-sm font-semibold className leading-[16px]">
+                  <Button className="px-8 cursor-pointer py-3.5 bg-[#f2f2f2] rounded-[43px] text-[#4c4c4c] text-sm font-semibold className leading-[16px]">
                     Return to shop
-                  </button>
+                  </Button>
                 </td>
                 <td className="px-2 py-2" colSpan={2}>
-                  <button className="px-8 py-3.5 cursor-pointer bg-[#f2f2f2] rounded-[43px] text-[#4c4c4c] text-sm font-semibold className leading-[16px]">
+                  <Button className="px-8 py-3.5 cursor-pointer bg-[#f2f2f2] rounded-[43px] text-[#4c4c4c] text-sm font-semibold className leading-[16px]">
                     Update Cart
-                  </button>
+                  </Button>
                 </td>
               </tr>
             </tfoot>
@@ -128,9 +127,9 @@ export default function CartItems() {
               ${total}
             </span>
           </div>
-          <button className="w-[376px] text-white mt-5 px-10 py-4 bg-[#00b206] rounded-[44px] gap-4 text-base font-semibold leading-tight">
+          <Button className="w-[376px] text-white mt-5 px-10 py-4 bg-[#00b206] rounded-[44px] gap-4 text-base font-semibold leading-tight">
             Proceed to checkout
-          </button>
+          </Button>
         </div>
       </div>
     </section>

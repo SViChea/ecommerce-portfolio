@@ -21,10 +21,9 @@ export default function PopularProduct() {
     dispatch(addToCart(product));
   };
 
-  const prod = (product as ProductType[]) || [];
-  console.log(prod);
-
   useEffect(() => {
+    const prod = (product as ProductType[]) || [];
+    console.log(prod);
     const result = search
       ? prod.filter((u: ProductType) => {
           return u.title.toLowerCase().includes(search.toLowerCase());
@@ -32,7 +31,7 @@ export default function PopularProduct() {
       : prod;
 
     setProducts(result || prod);
-  }, [product, searchParam]);
+  }, [product, searchParam, search]);
 
   if (isLoading) {
     return <div>loading</div>;

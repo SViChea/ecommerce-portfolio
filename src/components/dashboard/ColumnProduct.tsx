@@ -1,6 +1,5 @@
 import { ColumnDef } from "@tanstack/react-table";
-import DeleteAlart from "../cart/DeleteAlart";
-import OpenEditDialog from "../cart/OpenEditDialog";
+import DeleteAlart from "./DeleteAlart";
 import Image from "next/image";
 import { ProductType } from "@/types/productType";
 import { Button } from "../ui/button";
@@ -51,6 +50,20 @@ export const columnsCart: ColumnDef<ProductType>[] = [
     },
   },
   {
+    accessorKey: "category",
+    header: "Category",
+      cell: ({row}) => (
+      row.original.category.name
+    ),
+  },
+  {
+    accessorKey: "description",
+    header: "Description",
+    cell: ({getValue}) => (
+      <p className="text-wrap">{getValue<string>()}</p> 
+    )
+  },
+  {
     accessorKey: "price",
     header: ({ column }) => {
       return (
@@ -70,10 +83,9 @@ export const columnsCart: ColumnDef<ProductType>[] = [
   {
     accessorKey: "action",
     header: "Action",
-    cell: () => (
+    cell: ({row}) => (
       <div className="flex gap-2 items-center">
-        <OpenEditDialog />
-        <DeleteAlart />
+        <DeleteAlart productId={row.original.id}/>
       </div>
     ),
   },

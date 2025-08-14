@@ -18,6 +18,8 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { Button } from "../ui/button";
+import OpenEditDialog from "./OpenEditDialog";
+import AddProductForm from "./form/AddProductForm";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -47,7 +49,7 @@ export default function TableCartComponent<TValue, TData>({
       <div className="rounded-md border mx-10 mt-5 p-5">
         <div className="flex justify-between">
           <h4 className="text-12 font-bold">Product</h4>
-          <Button>Add New Product</Button>
+          <OpenEditDialog name="Add Product" component={<AddProductForm/>}/>
         </div>
         <Table className="m-3 self-center mx-auto">
           <TableHeader>

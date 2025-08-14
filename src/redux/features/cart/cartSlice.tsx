@@ -1,4 +1,3 @@
-import { items } from "@/components/sidebar/sidebarMenu"
 import { ProductType } from "@/types/productType"
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 

@@ -7,20 +7,19 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { SquarePen } from "lucide-react";
+import AddProductForm from "./form/AddProductForm";
 
-export default function OpenEditDialog() {
+export default function OpenEditDialog({name, component} : {name:string, component: React.JSX.Element}) {
   return (
     <Dialog>
       <DialogTrigger>
-          <SquarePen className="text-black" size={20}/>
+          <p>{name}</p>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Are you absolutely sure?</DialogTitle>
+          <DialogTitle>{name}</DialogTitle>
           <DialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
+            {component}
           </DialogDescription>
         </DialogHeader>
       </DialogContent>

@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import SearchComponent from "./SearchComponent";
-import { Badge, ShoppingCart, User } from "lucide-react";
+import { ShoppingCart, User } from "lucide-react";
 import { useAppSelector } from "@/redux/hook";
 import { Button } from "../ui/button";
 
