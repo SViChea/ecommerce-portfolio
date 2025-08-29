@@ -21,11 +21,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useCreateProductMutation, useGetProductsByIdQuery, useUpdateProductMutation } from "@/redux/services/products/productsApi";
+import { useCreateProductMutation, useUpdateProductMutation } from "@/redux/services/products/productsApi";
 import SuccessDialog from "../SuccessDialog";
 import { useGetCategoriesQuery } from "@/redux/services/categorys/categoriesApi";
 import { CategoryType } from "@/types/categoryType";
-import { parse } from "path";
 import { ProductType } from "@/types/productType";
 
 const formSchema = z.object({
@@ -48,7 +47,7 @@ export default function AddProductForm({product, type}: {product?: ProductType, 
     resolver: zodResolver(formSchema),
   });
 
-  const { data: categories, isLoading } = useGetCategoriesQuery();
+  const { data: categories} = useGetCategoriesQuery();
   const category = (categories as CategoryType[]) || [];
 
   const [createProduct] = useCreateProductMutation();
@@ -77,7 +76,7 @@ export default function AddProductForm({product, type}: {product?: ProductType, 
     e.preventDefault();
 
     try {
-      let imageUrl = "";
+      let imageUrl = product?.images[0] || "";
       if (formData.images) {
         imageUrl = await uploadImage(formData.images);
       }
@@ -162,7 +161,7 @@ export default function AddProductForm({product, type}: {product?: ProductType, 
                     <SelectGroup>
                       <SelectLabel>Category</SelectLabel>
                       {category.map((item) => (
-                        <SelectItem value={item.id.toString()}>
+                        <SelectItem key={item.id} value={item.id.toString()}>
                           {item.name}
                         </SelectItem>
                       ))}

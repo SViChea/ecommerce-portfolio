@@ -4,7 +4,7 @@ import { CategoryType } from "@/types/categoryType";
 import Image from "next/image";
 
 export default function CategoryComponent() {
-  const {data: category, isLoading} = useGetCategoriesQuery();
+  const {data: category} = useGetCategoriesQuery();
 
   const categories = category as CategoryType[] || []
 

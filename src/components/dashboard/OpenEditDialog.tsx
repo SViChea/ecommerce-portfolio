@@ -12,7 +12,7 @@ export default function OpenEditDialog({name, component} : {name:string, compone
   return (
     <Dialog>
       <DialogTrigger>
-          <p>{name}</p>
+          {name}
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
