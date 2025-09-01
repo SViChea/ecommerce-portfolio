@@ -5,8 +5,7 @@ RUN npm i
 
 # COPY  . . 
 COPY src ./src
-COPY public ./public 
-RUN npm i
+COPY public ./public
 RUN npm run build 
 
 
