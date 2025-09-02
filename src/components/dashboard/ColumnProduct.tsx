@@ -1,4 +1,3 @@
-'use client'
 import { ColumnDef } from "@tanstack/react-table";
 import DeleteAlart from "./DeleteAlart";
 import Image from "next/image";
