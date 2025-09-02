@@ -1,18 +1,18 @@
-FROM node:alpine AS builder
+FROM node:18-alpine AS builder
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm i
+RUN npm install
 
-# COPY  . 
 COPY . .
 
 RUN npm run build
-RUN npm run export
 
-# Stage:2 production 
-FROM nginx:alpine
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=builder /app/out /usr/share/nginx/html
-EXPOSE 80
-ENTRYPOINT [ "nginx", "-g", "daemon off;" ]
+FROM node:18-alpine AS runner
+WORKDIR /app
+ENV NODE_ENV=production
+
+COPY --from=builder /app ./
+
+EXPOSE 3000
+CMD ["npm", "start"]
