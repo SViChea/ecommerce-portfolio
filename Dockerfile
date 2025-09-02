@@ -7,7 +7,7 @@ RUN npm i
 # COPY  . 
 COPY . .
 
-RUN npm run build 
+RUN npm run build && npm run export
 
 # Stage:2 production 
 FROM nginx:alpine
