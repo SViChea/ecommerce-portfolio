@@ -1,13 +1,15 @@
 FROM node:alpine AS builder
 WORKDIR /app
+
 COPY package*.json ./
 RUN npm i
 
 # COPY  . . 
 COPY src ./src
 COPY public ./public
-RUN npm run build 
+COPY . .
 
+RUN npm run build 
 
 # Stage:2 production 
 FROM nginx:alpine
