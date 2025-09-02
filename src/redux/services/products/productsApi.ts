@@ -1,3 +1,4 @@
+'use client'
 import { CreateProductType,ProductType, UpdateProductType } from "@/types/productType";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
