@@ -33,7 +33,9 @@ const formSchema = z.object({
   description: z.string(),
   price: z.number(),
   image: z
-    .instanceof(File, { message: "Please select a file." })
+    .custom<File>((val) => val instanceof File, {
+      message: "Please select a file.",
+    })
     .refine((f) => f.size > 0, "File is empty.")
     .refine((f) => f.size <= 5 * 1024 * 1024, "Max size is 5MB.")
     .refine(
